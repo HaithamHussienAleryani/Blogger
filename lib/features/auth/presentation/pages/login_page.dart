@@ -26,6 +26,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Form(
@@ -60,7 +61,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 20,
               ),
               GestureDetector(
-                onTap: () => context.go('/'),
+                onTap: () => context.go('/signup'),
                 child: RichText(
                   text: TextSpan(
                       text: "Don't have an account? ",

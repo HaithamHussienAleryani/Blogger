@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 final routingConfig =
     GoRouter(debugLogDiagnostics: true, initialLocation: '/', routes: [
-  GoRoute(path: '/', builder: (context, state) => const SignUpPage(), routes: [
-    GoRoute(path: 'login', builder: (context, state) => const LoginPage()),
+  GoRoute(path: '/', builder: (context, state) => const LoginPage(), routes: [
+    GoRoute(path: 'signup', builder: (context, state) => const SignUpPage()),
   ]),
 ]);

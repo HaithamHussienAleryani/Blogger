@@ -1,8 +1,8 @@
 # Blogger
-blogger app applying bloc pattern and clean archtacture
+blogger app applying bloc pattern and clean architecture
 # blogger
 
-Blogger is a bloc pattern, clean archtacture app
+Blogger is a bloc pattern, clean architecture app
 
 ## Getting Started
 

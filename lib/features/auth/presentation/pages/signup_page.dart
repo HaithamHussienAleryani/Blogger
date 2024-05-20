@@ -2,6 +2,7 @@ import 'package:blogger/core/theme/app_platte.dart';
 import 'package:blogger/features/auth/presentation/widgets/auth_field.dart';
 import 'package:blogger/features/auth/presentation/widgets/auth_gradiant_button.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -66,20 +67,23 @@ class _SignUpPageState extends State<SignUpPage> {
               const SizedBox(
                 height: 20,
               ),
-              RichText(
-                text: TextSpan(
-                    text: "Do have an account? ",
-                    children: [
-                      TextSpan(
-                          text: 'Sign In',
-                          style: Theme.of(context)
-                              .textTheme
-                              .titleMedium
-                              ?.copyWith(
-                                  color: AppPallete.gradient2,
-                                  fontWeight: FontWeight.bold))
-                    ],
-                    style: Theme.of(context).textTheme.titleMedium),
+              GestureDetector(
+                onTap: () => context.go('/login'),
+                child: RichText(
+                  text: TextSpan(
+                      text: "Do have an account? ",
+                      children: [
+                        TextSpan(
+                            text: 'Sign In',
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                    color: AppPallete.gradient2,
+                                    fontWeight: FontWeight.bold))
+                      ],
+                      style: Theme.of(context).textTheme.titleMedium),
+                ),
               ),
             ],
           ),

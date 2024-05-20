@@ -1,5 +1,5 @@
+import 'package:blogger/core/routing/router.dart';
 import 'package:blogger/core/theme/theme.dart';
-import 'package:blogger/features/auth/presentation/pages/signup_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,11 +11,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'Blogger',
+    
       theme: AppTheme.darkThemeMode,
-      home: const SignUpPage(),
+      routerConfig: routingConfig,
     );
   }
 }

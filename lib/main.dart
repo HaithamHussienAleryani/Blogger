@@ -1,17 +1,18 @@
 import 'package:blogger/core/routing/router.dart';
 import 'package:blogger/core/theme/theme.dart';
+import 'package:blogger/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:blogger/init_dependencies.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: ".env");
-  await Supabase.initialize(
-      url: dotenv.env['SUPABASE_URL'] ?? "",
-      anonKey: dotenv.env['SUPABASE_ANONKEY'] ?? "");
-
-  runApp(const MyApp());
+  await initDependencies();
+  runApp(MultiBlocProvider(providers: [
+    BlocProvider(
+      create: (_) => serviceLocator<AuthBloc>(),
+    )
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {

@@ -1,7 +1,11 @@
+import 'package:blogger/core/common/widgets/loader.dart';
 import 'package:blogger/core/theme/app_platte.dart';
+import 'package:blogger/core/utils/show_snackbar.dart';
+import 'package:blogger/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:blogger/features/auth/presentation/widgets/auth_field.dart';
 import 'package:blogger/features/auth/presentation/widgets/auth_gradiant_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatefulWidget {
@@ -56,7 +60,27 @@ class _LoginPageState extends State<LoginPage> {
               const SizedBox(
                 height: 20,
               ),
-              const AuthGradiantButton(text: "Sign In"),
+              BlocConsumer<AuthBloc, AuthState>(
+                listener: (context, state) {
+                  if (state is AuthFailure) {
+                    showSnackBar(context, state.message);
+                  }
+                },
+                builder: (context, state) {
+                  if (state is AuthLoading) {
+                    return const Loader();
+                  }
+                  return AuthGradiantButton(
+                      onTap: () {
+                        if (_formKey.currentState!.validate()) {
+                          context.read<AuthBloc>().add(AuthSignIn(
+                              email: emailController.text,
+                              password: passwordController.text));
+                        }
+                      },
+                      text: "Sign In");
+                },
+              ),
               const SizedBox(
                 height: 20,
               ),

@@ -38,4 +38,18 @@ class AuthRepositoryImpl implements AuthRepository {
       return left(Failure(e.message));
     }
   }
+
+  @override
+  Future<Either<Failure, User>> getCurrentUser() async {
+    try {
+      final userData = await dataSource.getCurrentUserData();
+      if (userData == null) {
+        return left(Failure('User is not logged in'));
+      }
+
+      return right(userData);
+    } on ServerException catch (e) {
+      return left(Failure(e.message));
+    }
+  }
 }

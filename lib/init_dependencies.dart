@@ -1,6 +1,7 @@
 import 'package:blogger/features/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:blogger/features/auth/data/repositories/auth_reporsitory_impl.dart';
 import 'package:blogger/features/auth/domain/repository/auth_repository.dart';
+import 'package:blogger/features/auth/domain/usecases/current_user.dart';
 import 'package:blogger/features/auth/domain/usecases/user_sign_in.dart';
 import 'package:blogger/features/auth/domain/usecases/user_sign_up.dart';
 import 'package:blogger/features/auth/presentation/bloc/auth_bloc.dart';
@@ -21,12 +22,21 @@ Future<void> initDependencies() async {
 }
 
 void _initAuth() {
-  serviceLocator.registerFactory<AuthRemoteDataSource>(
-      () => AuthRemoteDataSourceImpl(serviceLocator()));
-  serviceLocator.registerFactory<AuthRepository>(
-      () => AuthRepositoryImpl(serviceLocator()));
-  serviceLocator.registerFactory(() => UserSignUp(serviceLocator()));
-  serviceLocator.registerFactory(() => UserSignIn(serviceLocator()));
-  serviceLocator.registerLazySingleton(() =>
-      AuthBloc(userSignUp: serviceLocator(), userSignIn: serviceLocator()));
+  //Datasource
+  serviceLocator
+    ..registerFactory<AuthRemoteDataSource>(
+        () => AuthRemoteDataSourceImpl(serviceLocator()))
+    // Repository
+    ..registerFactory<AuthRepository>(
+        () => AuthRepositoryImpl(serviceLocator()))
+    //UseCases
+    ..registerFactory(() => UserSignUp(serviceLocator()))
+    ..registerFactory(() => UserSignIn(serviceLocator()))
+    ..registerFactory(() => CurrentUser(serviceLocator()))
+    //Bloc
+    ..registerLazySingleton(() => AuthBloc(
+          userSignUp: serviceLocator(),
+          userSignIn: serviceLocator(),
+          currentUser: serviceLocator(),
+        ));
 }

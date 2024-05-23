@@ -1,3 +1,4 @@
+import 'package:blogger/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:blogger/core/routing/router.dart';
 import 'package:blogger/core/theme/theme.dart';
 import 'package:blogger/features/auth/presentation/bloc/auth_bloc.dart';
@@ -10,8 +11,11 @@ Future<void> main() async {
   await initDependencies();
   runApp(MultiBlocProvider(providers: [
     BlocProvider(
+      create: (_) => serviceLocator<AppUserCubit>(),
+    ),
+    BlocProvider(
       create: (_) => serviceLocator<AuthBloc>(),
-    )
+    ),
   ], child: const MyApp()));
 }
 

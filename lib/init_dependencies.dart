@@ -1,3 +1,4 @@
+import 'package:blogger/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:blogger/features/auth/data/data_sources/auth_remote_data_source.dart';
 import 'package:blogger/features/auth/data/repositories/auth_reporsitory_impl.dart';
 import 'package:blogger/features/auth/domain/repository/auth_repository.dart';
@@ -19,6 +20,9 @@ Future<void> initDependencies() async {
       anonKey: dotenv.env['SUPABASE_ANONKEY'] ?? "");
 
   serviceLocator.registerLazySingleton(() => supabase.client);
+
+  //core
+  serviceLocator.registerLazySingleton(() => AppUserCubit());
 }
 
 void _initAuth() {
@@ -38,5 +42,6 @@ void _initAuth() {
           userSignUp: serviceLocator(),
           userSignIn: serviceLocator(),
           currentUser: serviceLocator(),
+          appUserCubit: serviceLocator(),
         ));
 }

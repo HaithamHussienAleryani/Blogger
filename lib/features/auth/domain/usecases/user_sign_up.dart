@@ -1,6 +1,6 @@
+import 'package:blogger/core/common/entities/user.dart';
 import 'package:blogger/core/error/failures.dart';
 import 'package:blogger/core/usecase/usecase.dart';
-import 'package:blogger/features/auth/domain/entities/user.dart';
 import 'package:blogger/features/auth/domain/repository/auth_repository.dart';
 import 'package:fpdart/src/either.dart';
 

@@ -1,5 +1,5 @@
+import 'package:blogger/core/common/entities/user.dart';
 import 'package:blogger/core/usecase/usecase.dart';
-import 'package:blogger/features/auth/domain/entities/user.dart';
 import 'package:blogger/features/auth/domain/usecases/current_user.dart';
 import 'package:blogger/features/auth/domain/usecases/user_sign_in.dart';
 import 'package:blogger/features/auth/domain/usecases/user_sign_up.dart';
@@ -30,7 +30,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   void _isUserLoggedIn(AuthCurrentUser event, Emitter emit) async {
     final response = await _currentUser(NoParams());
     response.fold((failure) => emit(AuthFailure(failure.message)), (user) {
-      debugPrint("User info:${user.name}");
+      debugPrint("User info:${user.email}");
       emit(AuthSuccess(user));
     });
   }

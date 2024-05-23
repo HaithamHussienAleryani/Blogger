@@ -1,7 +1,7 @@
+import 'package:blogger/core/common/entities/user.dart';
 import 'package:blogger/core/error/exceptions.dart';
 import 'package:blogger/core/error/failures.dart';
 import 'package:blogger/features/auth/data/data_sources/auth_remote_data_source.dart';
-import 'package:blogger/features/auth/domain/entities/user.dart';
 import 'package:blogger/features/auth/domain/repository/auth_repository.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as sb;

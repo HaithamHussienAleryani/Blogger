@@ -1,4 +1,4 @@
-import 'package:blogger/features/auth/domain/entities/user.dart';
+import 'package:blogger/core/common/entities/user.dart';
 import 'package:fpdart/fpdart.dart';
 
 import '../../../../core/error/failures.dart';

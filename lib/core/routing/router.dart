@@ -16,7 +16,7 @@ final routingConfig =
             debugPrint("The user cubit state is ${state.runtimeType}");
             return state is AppUserLoggedIn;
           }, builder: (context, isLoggedIn) {
-            if (isLoggedIn) {
+            if (!isLoggedIn) {
               return const BlogPage();
             } else {
               return const LoginPage();

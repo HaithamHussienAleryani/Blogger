@@ -6,6 +6,7 @@ import 'package:blogger/features/auth/presentation/widgets/auth_field.dart';
 import 'package:blogger/features/auth/presentation/widgets/auth_gradiant_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginPage extends StatefulWidget {
@@ -38,10 +39,10 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
+              Text(
                 "Sign In.",
                 style: TextStyle(
-                  fontSize: 50,
+                  fontSize: 50.sp,
                   fontWeight: FontWeight.bold,
                 ),
               ),
